@@ -16,8 +16,8 @@ else:
     __path__.insert(0, distutils_path)
     real_distutils = imp.load_module("_virtualenv_distutils", None, distutils_path, ('', '', imp.PKG_DIRECTORY))
     # Copy the relevant attributes
-    __revision__ = real_distutils.__revision__
-    __version__ = real_distutils.__version__
+    __revision__ = getattr(real_distutils, '__revision__', None)
+    __version__ = getattr(real_distutils, '__version__', None)
 
 from distutils import dist, sysconfig
 
